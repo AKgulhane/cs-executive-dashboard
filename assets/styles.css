@@ -69,6 +69,27 @@ th { color: var(--muted); font-size: 0.72rem; letter-spacing: 0.05em; text-trans
 .flow { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.8rem; background: #f7f3ea; border-radius: 10px; padding: 14px 16px; overflow-x: auto; white-space: pre; }
 footer.site { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.8rem; }
 footer.site a { color: var(--forest); }
+.briefing { border-left: 4px solid var(--forest); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+.chip { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 0.82rem; cursor: pointer; text-decoration: none; display: inline-block; }
+.chip:hover, .chip.on { border-color: var(--forest); background: var(--forest-soft); color: var(--forest); }
+.customer-list { display: flex; flex-direction: column; gap: 10px; }
+.customer-card { border: 1px solid var(--line); border-radius: 12px; padding: 12px; cursor: pointer; background: #fff; }
+.customer-card.on { border-color: var(--forest); box-shadow: var(--shadow); }
+.customer-card h3 { margin: 0 0 4px; }
+.customer-card p { margin: 0; color: var(--muted); font-size: 0.84rem; }
+.chat { display: flex; flex-direction: column; min-height: 360px; }
+.chat-log { flex: 1; max-height: 320px; overflow-y: auto; padding: 4px 0 12px; }
+.bubble { max-width: 92%; margin: 8px 0; padding: 10px 12px; border-radius: 12px; font-size: 0.9rem; }
+.bubble.user { margin-left: auto; background: var(--forest); color: #f7f3ea; }
+.bubble.bot { background: #f7f3ea; }
+.bubble .cite { display: block; margin-top: 6px; font-size: 0.74rem; color: var(--muted); }
+.chat-form { display: flex; gap: 8px; }
+.chat-form input { flex: 1; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font: inherit; }
+.chat-form button, .fb button { border: 0; background: var(--forest); color: #f7f3ea; border-radius: 10px; padding: 10px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+.fb { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+.fb button.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+.actions li { margin-bottom: 8px; }
 @media (max-width: 980px) {
   .kpis, .cards, .grid-2 { grid-template-columns: 1fr; }
   header.top { flex-direction: column; align-items: flex-start; }
