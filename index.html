@@ -3,294 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Customer Success Executive Dashboard</title>
-  <meta name="description" content="Executive briefing for Customer Success: SLA, cases handled, MTTR, escalations, and maintenance windows." />
+  <title>Customer Support Dashboard</title>
+  <meta name="description" content="Executive board for bank customer support: SLA, CSAT, FRT, MTTR, deflection, escalations." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ink: #1a211c;
-      --muted: #5c675f;
-      --line: #d8d2c4;
-      --paper: #f3efe6;
-      --card: #fffcf6;
-      --forest: #1f5c45;
-      --forest-soft: #e4f0e8;
-      --amber: #9a5b12;
-      --amber-soft: #f7ead4;
-      --rose: #9b2c2c;
-      --rose-soft: #f6e2e0;
-      --shadow: 0 1px 0 rgba(26, 33, 28, 0.04), 0 12px 32px rgba(26, 33, 28, 0.06);
-    }
-
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-      background:
-        radial-gradient(900px 280px at 10% -10%, #e7efe8 0%, transparent 60%),
-        var(--paper);
-      color: var(--ink);
-      line-height: 1.45;
-    }
-
-    .wrap {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 28px 0 64px;
-    }
-
-    header.top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 20px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .brand {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .mark {
-      width: 46px;
-      height: 46px;
-      border-radius: 10px;
-      background: var(--forest);
-      color: #f7f3ea;
-      display: grid;
-      place-items: center;
-      font-family: "Source Serif 4", Georgia, serif;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-
-    h1 {
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: 1.75rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin: 0 0 2px;
-    }
-
-    .subtitle { margin: 0; color: var(--muted); font-size: 0.95rem; }
-
-    .period {
-      text-align: right;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .period strong { display: block; color: var(--ink); font-size: 0.98rem; font-weight: 600; }
-
-    .badge {
-      display: inline-block;
-      margin-top: 6px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--amber-soft);
-      color: var(--amber);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .kpis {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin: 22px 0 18px;
-    }
-
-    .kpi {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 14px 14px 13px;
-      box-shadow: var(--shadow);
-      min-width: 0;
-    }
-
-    .kpi .label {
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .kpi .value {
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: 1.85rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      margin: 6px 0 4px;
-    }
-
-    .kpi .meta { font-size: 0.8rem; color: var(--muted); }
-    .ok { color: var(--forest); }
-    .watch { color: var(--amber); }
-    .risk { color: var(--rose); }
-
-    .status-pill {
-      display: inline-block;
-      padding: 1px 7px;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-    .status-pill.on { background: var(--forest-soft); color: var(--forest); }
-    .status-pill.watch { background: var(--amber-soft); color: var(--amber); }
-    .status-pill.off { background: var(--rose-soft); color: var(--rose); }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 18px 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .panel h2 {
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: 1.15rem;
-      margin: 0 0 4px;
-    }
-
-    .panel p.lead {
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: minmax(140px, 0.95fr) 1.4fr 48px;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .bar {
-      height: 9px;
-      background: #ece6d8;
-      border-radius: 99px;
-      overflow: hidden;
-    }
-
-    .bar > span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: var(--forest);
-    }
-
-    .bar > span.warn { background: var(--amber); }
-    .bar > span.bad { background: var(--rose); }
-
-    .stat-split {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .stat {
-      background: #f7f3ea;
-      border-radius: 10px;
-      padding: 10px;
-    }
-
-    .stat b { display: block; font-size: 1.2rem; }
-    .stat span { color: var(--muted); font-size: 0.76rem; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.86rem;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 8px 6px;
-      border-bottom: 1px solid #ece6d8;
-      vertical-align: top;
-    }
-
-    th {
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .mw {
-      display: flex;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid #ece6d8;
-    }
-
-    .mw:last-child { border-bottom: 0; }
-
-    .when {
-      min-width: 92px;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .when b { display: block; color: var(--ink); font-size: 0.88rem; }
-
-    footer.defs {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    footer.defs h3 {
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin: 18px 0 8px;
-    }
-
-    footer.defs dl { margin: 0; }
-    footer.defs dt { color: var(--ink); font-weight: 600; }
-    footer.defs dd { margin: 0 0 8px; }
-
-    @media (max-width: 980px) {
-      .kpis { grid-template-columns: repeat(2, 1fr); }
-      .kpis .kpi:last-child { grid-column: 1 / -1; }
-      .grid { grid-template-columns: 1fr; }
-      header.top { flex-direction: column; align-items: flex-start; }
-      .period { text-align: left; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
   <div class="wrap">
     <header class="top">
-      <div class="brand">
-        <div class="mark">CS</div>
-        <div>
-          <h1>Executive Management</h1>
-          <p class="subtitle">Customer Success operations briefing</p>
-        </div>
+      <div>
+        <h1>Executive Management</h1>
+        <p class="subtitle">Customer support briefing for bank customers — lending, SBA, operations</p>
       </div>
       <div class="period">
         <strong id="periodLabel"></strong>
@@ -298,125 +23,42 @@
         <span class="badge">Sample data — starter set</span>
       </div>
     </header>
-
     <section class="kpis" id="kpis"></section>
-
-    <section class="grid">
+    <section class="grid-2">
       <article class="panel">
         <h2>SLA attainment</h2>
-        <p class="lead">Share of cases closed inside the contracted response and resolution targets.</p>
+        <p class="lead">Share of cases inside first-response and resolution targets.</p>
         <div id="slaRows"></div>
         <p class="lead" style="margin:16px 0 8px">MTTR by priority (hours)</p>
         <div id="mttrRows"></div>
       </article>
       <article class="panel">
         <h2>Cases handled</h2>
-        <p class="lead">Volume this period, with current open work still on the board.</p>
+        <p class="lead">Volume this period, plus live backlog and channel mix.</p>
         <div class="stat-split" id="caseSplit"></div>
         <div id="caseTypes"></div>
       </article>
     </section>
-
-    <section class="grid">
+    <section class="grid-2">
       <article class="panel">
         <h2>Escalations</h2>
-        <p class="lead">Cases raised to executive or specialist ownership. Open items need a named owner.</p>
+        <p class="lead">Open L2 / L3 / exec items. VIP cases skip the L1 queue.</p>
         <table>
-          <thead>
-            <tr>
-              <th>Case</th>
-              <th>Customer</th>
-              <th>Severity</th>
-              <th>Owner</th>
-              <th>Age</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Case</th><th>Customer</th><th>Sev</th><th>Path</th><th>Owner</th><th>Age</th></tr></thead>
           <tbody id="escalations"></tbody>
         </table>
       </article>
       <article class="panel">
         <h2>Maintenance windows</h2>
-        <p class="lead">Planned work that can affect customer-facing SLAs. Communicate before the start time.</p>
+        <p class="lead">Planned work that can pause SLA clocks. Comms due 48h prior.</p>
         <div id="windows"></div>
       </article>
     </section>
-
-    <footer class="defs">
-      <h3>Metric definitions</h3>
-      <dl>
-        <dt>SLA</dt>
-        <dd>Service level agreement. Percentage of cases that met first-response and resolution targets for the contracted priority.</dd>
-        <dt>Cases handled</dt>
-        <dd>Cases touched or closed in the reporting period, plus the live open / in-progress backlog.</dd>
-        <dt>MTTR</dt>
-        <dd>Mean time to resolution. Average elapsed hours from case open to case close.</dd>
-        <dt>Escalations</dt>
-        <dd>Cases moved above the standard queue because of severity, SLA risk, or executive attention.</dd>
-        <dt>Maintenance window</dt>
-        <dd>Agreed period when a change may reduce availability. These hours are typically excluded from SLA clocks.</dd>
-      </dl>
-    </footer>
   </div>
-
+  <script src="assets/data.js"></script>
+  <script src="assets/nav.js"></script>
   <script>
-    /* Edit this object to replace sample numbers. */
-    const DATA = {
-      period: "1–16 August 2026",
-      asOf: "16 Aug 2026, 09:40 UTC",
-      sla: {
-        attainment: 97.2,
-        target: 95,
-        delta: "+1.4 pts vs July",
-        byPriority: [
-          { name: "P1 — Critical", value: 100, target: 99 },
-          { name: "P2 — High", value: 96.4, target: 95 },
-          { name: "P3 — Standard", value: 97.8, target: 90 },
-          { name: "First response", value: 94.1, target: 95 }
-        ]
-      },
-      cases: {
-        handled: 186,
-        delta: "+12% vs July",
-        open: 18,
-        inProgress: 11,
-        resolved: 157,
-        byType: [
-          { name: "How-to / enablement", value: 72 },
-          { name: "Product defect", value: 41 },
-          { name: "Billing / contract", value: 28 },
-          { name: "Integration", value: 45 }
-        ]
-      },
-      mttr: {
-        hours: 3.8,
-        targetHours: 6,
-        delta: "−0.6h vs July",
-        byPriority: [
-          { name: "P1", hours: 1.4 },
-          { name: "P2", hours: 4.1 },
-          { name: "P3", hours: 7.6 }
-        ]
-      },
-      escalations: {
-        open: 4,
-        month: 9,
-        items: [
-          { id: "CS-1842", customer: "Northline Bank", severity: "P1", owner: "Priya N.", age: "6h" },
-          { id: "CS-1831", customer: "Helios Health", severity: "P2", owner: "Marcus L.", age: "1d" },
-          { id: "CS-1819", customer: "Aperture Retail", severity: "P2", owner: "Elena V.", age: "2d" },
-          { id: "CS-1804", customer: "Cobalt Logistics", severity: "P3", owner: "Jonah K.", age: "4d" }
-        ]
-      },
-      maintenance: {
-        next: "23 Aug, 02:00–04:00 UTC",
-        windows: [
-          { date: "23 Aug", time: "02:00–04:00 UTC", title: "Identity API failover drill", impact: "Read-only admin console", status: "Scheduled" },
-          { date: "30 Aug", time: "01:00–03:00 UTC", title: "Document store patch", impact: "Upload latency possible", status: "Scheduled" },
-          { date: "09 Aug", time: "02:00–02:45 UTC", title: "CDN certificate rotation", impact: "None observed", status: "Completed" }
-        ]
-      }
-    };
-
+    const D = SUPPORT.metrics;
     const tone = (value, target, invert) => {
       if (invert) {
         if (value <= target) return "on";
@@ -427,100 +69,45 @@
       if (value >= target - 2) return "watch";
       return "off";
     };
-
-    const pill = (kind, text) =>
-      `<span class="status-pill ${kind}">${text}</span>`;
-
-    document.getElementById("periodLabel").textContent = DATA.period;
-    document.getElementById("asOf").textContent = DATA.asOf;
-
-    const slaTone = tone(DATA.sla.attainment, DATA.sla.target);
-    const mttrTone = tone(DATA.mttr.hours, DATA.mttr.targetHours, true);
-    const escTone = DATA.escalations.open >= 5 ? "off" : DATA.escalations.open >= 3 ? "watch" : "on";
-
+    const pill = (kind, text) => `<span class="status-pill ${kind}">${text}</span>`;
+    document.getElementById("periodLabel").textContent = SUPPORT.period;
+    document.getElementById("asOf").textContent = SUPPORT.asOf;
+    const slaTone = tone(D.sla.attainment, D.sla.target);
+    const mttrTone = tone(D.mttr.hours, D.mttr.targetHours, true);
+    const csatTone = tone(D.csat.pct, D.csat.target);
+    const frtTone = tone(D.frt.hours, D.frt.target, true);
+    const defTone = tone(D.deflection.pct, D.deflection.target);
+    const escTone = D.escalations.open >= 5 ? "off" : D.escalations.open >= 3 ? "watch" : "on";
     document.getElementById("kpis").innerHTML = `
-      <article class="kpi">
-        <div class="label">SLA</div>
-        <div class="value">${DATA.sla.attainment}%</div>
-        <div class="meta">${pill(slaTone, slaTone === "on" ? "On target" : slaTone === "watch" ? "Watch" : "Below")} · ${DATA.sla.delta}</div>
-      </article>
-      <article class="kpi">
-        <div class="label">Cases handled</div>
-        <div class="value">${DATA.cases.handled}</div>
-        <div class="meta">${DATA.cases.delta}</div>
-      </article>
-      <article class="kpi">
-        <div class="label">MTTR</div>
-        <div class="value">${DATA.mttr.hours}h</div>
-        <div class="meta">${pill(mttrTone, "Target < " + DATA.mttr.targetHours + "h")} · ${DATA.mttr.delta}</div>
-      </article>
-      <article class="kpi">
-        <div class="label">Escalations</div>
-        <div class="value">${DATA.escalations.open}</div>
-        <div class="meta">${pill(escTone, "Open")} · ${DATA.escalations.month} this month</div>
-      </article>
-      <article class="kpi">
-        <div class="label">Next maintenance</div>
-        <div class="value" style="font-size:1.15rem;line-height:1.2;margin-top:10px">${DATA.maintenance.next}</div>
-        <div class="meta">Customer comms due 48h prior</div>
-      </article>
-    `;
-
-    document.getElementById("slaRows").innerHTML = DATA.sla.byPriority.map((row) => {
+      <article class="kpi"><div class="label">SLA</div><div class="value">${D.sla.attainment}%</div><div class="meta">${pill(slaTone, "On target")} · ${D.sla.delta}</div></article>
+      <article class="kpi"><div class="label">CSAT</div><div class="value">${D.csat.pct}%</div><div class="meta">${pill(csatTone, "n=" + D.csat.n)} · ${D.csat.delta}</div></article>
+      <article class="kpi"><div class="label">First response</div><div class="value">${D.frt.hours}h</div><div class="meta">${pill(frtTone, "Median")} · ${D.frt.delta}</div></article>
+      <article class="kpi"><div class="label">MTTR</div><div class="value">${D.mttr.hours}h</div><div class="meta">${pill(mttrTone, "Target < " + D.mttr.targetHours + "h")} · ${D.mttr.delta}</div></article>
+      <article class="kpi"><div class="label">Cases handled</div><div class="value">${D.cases.handled}</div><div class="meta">${D.cases.delta}</div></article>
+      <article class="kpi"><div class="label">Ticket deflection</div><div class="value">${D.deflection.pct}%</div><div class="meta">${pill(defTone, "Target " + D.deflection.target + "%")} · ${D.deflection.delta}</div></article>
+      <article class="kpi"><div class="label">Escalations</div><div class="value">${D.escalations.open}</div><div class="meta">${pill(escTone, "Open")} · ${D.escalations.month} this month</div></article>
+      <article class="kpi"><div class="label">Next maintenance</div><div class="value" style="font-size:1.1rem;line-height:1.25;margin-top:10px">${D.maintenance.next}</div><div class="meta">Customer comms due 48h prior</div></article>`;
+    document.getElementById("slaRows").innerHTML = D.sla.byPriority.map((row) => {
       const cls = row.value >= row.target ? "" : row.value >= row.target - 2 ? "warn" : "bad";
-      return `<div class="row">
-        <div>${row.name}</div>
-        <div class="bar"><span class="${cls}" style="width:${Math.min(row.value, 100)}%"></span></div>
-        <div>${row.value}%</div>
-      </div>`;
+      return `<div class="row"><div>${row.name}</div><div class="bar"><span class="${cls}" style="width:${Math.min(row.value,100)}%"></span></div><div>${row.value}%</div></div>`;
     }).join("");
-
-    const maxMttr = Math.max(...DATA.mttr.byPriority.map((x) => x.hours), DATA.mttr.targetHours);
-    document.getElementById("mttrRows").innerHTML = DATA.mttr.byPriority.map((row) => {
-      const cls = row.hours <= DATA.mttr.targetHours ? "" : row.hours <= DATA.mttr.targetHours * 1.15 ? "warn" : "bad";
-      return `<div class="row">
-        <div>${row.name}</div>
-        <div class="bar"><span class="${cls}" style="width:${(row.hours / maxMttr) * 100}%"></span></div>
-        <div>${row.hours}h</div>
-      </div>`;
+    const maxMttr = Math.max(...D.mttr.byPriority.map((x) => x.hours), D.mttr.targetHours);
+    document.getElementById("mttrRows").innerHTML = D.mttr.byPriority.map((row) => {
+      const cls = row.hours <= D.mttr.targetHours ? "" : "warn";
+      return `<div class="row"><div>${row.name}</div><div class="bar"><span class="${cls}" style="width:${(row.hours/maxMttr)*100}%"></span></div><div>${row.hours}h</div></div>`;
     }).join("");
-
-    document.getElementById("caseSplit").innerHTML = `
-      <div class="stat"><b>${DATA.cases.open}</b><span>Open</span></div>
-      <div class="stat"><b>${DATA.cases.inProgress}</b><span>In progress</span></div>
-      <div class="stat"><b>${DATA.cases.resolved}</b><span>Resolved</span></div>
-    `;
-
-    const maxType = Math.max(...DATA.cases.byType.map((x) => x.value));
-    document.getElementById("caseTypes").innerHTML = DATA.cases.byType.map((row) => `
-      <div class="row">
-        <div>${row.name}</div>
-        <div class="bar"><span style="width:${(row.value / maxType) * 100}%"></span></div>
-        <div>${row.value}</div>
-      </div>
-    `).join("");
-
-    document.getElementById("escalations").innerHTML = DATA.escalations.items.map((item) => {
+    document.getElementById("caseSplit").innerHTML = `<div class="stat"><b>${D.cases.open}</b><span>Open</span></div><div class="stat"><b>${D.cases.inProgress}</b><span>In progress</span></div><div class="stat"><b>${D.cases.resolved}</b><span>Resolved</span></div>`;
+    const maxType = Math.max(...D.cases.byType.map((x) => x.value));
+    document.getElementById("caseTypes").innerHTML = D.cases.byType.map((row) =>
+      `<div class="row"><div>${row.name}</div><div class="bar"><span style="width:${(row.value/maxType)*100}%"></span></div><div>${row.value}</div></div>`
+    ).join("");
+    document.getElementById("escalations").innerHTML = D.escalations.items.map((item) => {
       const kind = item.severity === "P1" ? "off" : item.severity === "P2" ? "watch" : "on";
-      return `<tr>
-        <td>${item.id}</td>
-        <td>${item.customer}</td>
-        <td>${pill(kind, item.severity)}</td>
-        <td>${item.owner}</td>
-        <td>${item.age}</td>
-      </tr>`;
+      return `<tr><td>${item.id}</td><td>${item.customer}</td><td>${pill(kind, item.severity)}</td><td>${item.path}</td><td>${item.owner}</td><td>${item.age}</td></tr>`;
     }).join("");
-
-    document.getElementById("windows").innerHTML = DATA.maintenance.windows.map((w) => {
+    document.getElementById("windows").innerHTML = D.maintenance.windows.map((w) => {
       const kind = w.status === "Completed" ? "on" : "watch";
-      return `<div class="mw">
-        <div class="when"><b>${w.date}</b>${w.time}</div>
-        <div>
-          <strong>${w.title}</strong><br />
-          <span style="color:var(--muted)">${w.impact}</span>
-        </div>
-        <div>${pill(kind, w.status)}</div>
-      </div>`;
+      return `<div class="mw"><div class="when"><b>${w.date}</b>${w.time}</div><div><strong>${w.title}</strong><br /><span style="color:var(--muted)">${w.impact}</span></div><div>${pill(kind, w.status)}</div></div>`;
     }).join("");
   </script>
 </body>
