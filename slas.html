@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SLAs and support metrics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1>SLAs and metrics</h1>
+        <p class="subtitle">Written targets for first response, resolution, CSAT, and deflection. Clocks pause only for documented reasons.</p>
+      </div>
+    </header>
+    <article class="panel">
+      <h2>Priority policies</h2>
+      <p class="lead">VIP banks are one step tighter on first response. P1 uses clock minutes; P3–P4 use business minutes (08:00–20:00 ET).</p>
+      <table>
+        <thead><tr><th>Priority</th><th>Meaning</th><th>First response</th><th>Resolve</th><th>VIP first response</th></tr></thead>
+        <tbody>
+          <tr><td>P1</td><td>Production down or funds movement blocked</td><td>15 min</td><td>4 hours</td><td>10 min</td></tr>
+          <tr><td>P2</td><td>Major workflow blocked</td><td>1 hour</td><td>8 hours</td><td>30 min</td></tr>
+          <tr><td>P3</td><td>Standard how-to or defect</td><td>4 hours</td><td>1 business day</td><td>2 hours</td></tr>
+          <tr><td>P4</td><td>Request / enhancement</td><td>1 business day</td><td>3 business days</td><td>4 hours</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <section class="grid-2">
+      <article class="panel">
+        <h2>Operating metrics</h2>
+        <table>
+          <thead><tr><th>Metric</th><th>Phase 1 target</th><th>This board</th></tr></thead>
+          <tbody>
+            <tr><td>SLA attainment</td><td>≥ 95%</td><td>97.2%</td></tr>
+            <tr><td>CSAT (4–5)</td><td>≥ 88%</td><td>91%</td></tr>
+            <tr><td>First response (median)</td><td>≤ 2h</td><td>1.6h</td></tr>
+            <tr><td>Resolution time (MTTR)</td><td>≤ 6h</td><td>3.8h</td></tr>
+            <tr><td>Ticket deflection</td><td>≥ 35%</td><td>28% — below target</td></tr>
+          </tbody>
+        </table>
+      </article>
+      <article class="panel">
+        <h2>Clock rules</h2>
+        <ul>
+          <li>Start first-response clock on create.</li>
+          <li>Pause only for customer-pending, bank-core / E-Tran wait, or announced maintenance.</li>
+          <li>P1 cannot sit in pending without an incident or customer-pause event.</li>
+          <li>80% of SLA → page assignee and lead.</li>
+          <li>Breach → Head of Support on P1; Team Lead on P2.</li>
+        </ul>
+        <p class="lead">Hours: Mon–Fri 08:00–20:00 ET. P1 is 24/7 on-call.</p>
+      </article>
+    </section>
+  </div>
+  <script src="assets/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Escalation paths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1>Escalation paths</h1>
+        <p class="subtitle">Who owns the next hour. Complex and VIP issues do not wait in the general queue.</p>
+      </div>
+    </header>
+    <article class="panel">
+      <h2>Default path</h2>
+      <pre class="flow">Customer
+   │
+   ▼
+L1 Support Specialist     macros, KB, resets, status, docs
+   │  cannot resolve, or SLA at 80%
+   ▼
+L2 Domain SME             lending · SBA · banking operations
+   │  defect, data, or policy gap
+   ▼
+L3 Engineering / Product  bug, incident, roadmap
+   │  revenue, reputation, or examiner risk
+   ▼
+Executive                 Head of Support + CS + Credit</pre>
+    </article>
+    <section class="grid-2">
+      <article class="panel">
+        <h2>Special paths</h2>
+        <div class="path-step"><div class="when"><b>VIP</b>P1 / exec-originated</div><div>Skip L1. Assign <strong>named support owner</strong> and CSM. Head of Support stays on the thread until first customer update.</div></div>
+        <div class="path-step"><div class="when"><b>Compliance</b>complaint / fair lending</div><div>Open a parallel Compliance ticket. Do not wait on L3. No AI-authored reply.</div></div>
+        <div class="path-step"><div class="when"><b>Credit</b>eligibility</div><div>Support does not invent a credit decision. Conference Credit. Point at the article, then hand off.</div></div>
+      </article>
+      <article class="panel">
+        <h2>Required fields on every escalate</h2>
+        <ul>
+          <li>From level → to level</li>
+          <li>Customer impact in one sentence</li>
+          <li>What was already tried</li>
+          <li>Named owner</li>
+          <li>Next update time (never “soon”)</li>
+        </ul>
+        <p class="lead">Aging rule: no open VIP escalation older than 48 hours without an exec note.</p>
+      </article>
+    </section>
+    <article class="panel">
+      <h2>Open board (sample)</h2>
+      <table>
+        <thead><tr><th>Case</th><th>Bank</th><th>Sev</th><th>Path</th><th>Owner</th><th>Age</th><th>Next update</th></tr></thead>
+        <tbody>
+          <tr><td>CS-1842</td><td>Northline Bank</td><td>P1</td><td>VIP → Exec</td><td>Priya N.</td><td>6h</td><td>05:00 UTC</td></tr>
+          <tr><td>CS-1831</td><td>Helios Health</td><td>P2</td><td>L1 → L2 SBA</td><td>Sara N.</td><td>1d</td><td>14:00 UTC</td></tr>
+          <tr><td>CS-1819</td><td>Aperture Retail</td><td>P2</td><td>L1 → L3 Eng</td><td>Elena V.</td><td>2d</td><td>16:00 UTC</td></tr>
+          <tr><td>CS-1804</td><td>Cobalt Logistics</td><td>P3</td><td>L1 → L2 Lending</td><td>Reed O.</td><td>4d</td><td>18:00 UTC</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+  <script src="assets/nav.js"></script>
+</body>
+</html>
