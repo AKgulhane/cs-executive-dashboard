@@ -3,21 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Support operations</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <title>Support operations, tools, automation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
   <div class="wrap">
-    <header class="top"><div><h1>Operations</h1><p class="subtitle">Channels, tooling, workflows, and regional routing.</p></div></header>
+    <header class="top">
+      <div>
+        <h1>Operations</h1>
+        <p class="subtitle">Channels, tooling, workflows, and AI — so the team spends time on problems, not process.</p>
+      </div>
+    </header>
+
     <article class="panel">
-      <h2>Workflows to automate</h2>
-      <ul>
-        <li><strong>Routing</strong> — intent + team + contact region (APAC / EMEA / AMER); VIP skip-L1</li>
-        <li><strong>SLA alerts</strong> — 80% page to assignee and lead in the ticket’s region</li>
-        <li><strong>Incident notice</strong> — send in regional hours; VIP first</li>
-      </ul>
+      <h2>Channels</h2>
+      <table>
+        <thead><tr><th>Channel</th><th>Use</th><th>Hours</th><th>This period</th></tr></thead>
+        <tbody>
+          <tr><td>Email</td><td>Attachments and audit</td><td>Business + P1 on-call</td><td>81</td></tr>
+          <tr><td>Chat</td><td>Access and status</td><td>Business</td><td>54</td></tr>
+          <tr><td>In-product</td><td>Context (page, loan id)</td><td>24/7 intake</td><td>33</td></tr>
+          <tr><td>Phone</td><td>VIP, P1, first-time users</td><td>Business + P1 on-call</td><td>18</td></tr>
+        </tbody>
+      </table>
     </article>
+
+    <section class="grid-2">
+      <article class="panel">
+        <h2>Tooling</h2>
+        <table>
+          <thead><tr><th>Capability</th><th>Phase 1</th><th>Stage B</th></tr></thead>
+          <tbody>
+            <tr><td>Helpdesk</td><td>Required — system of record</td><td>Same</td></tr>
+            <tr><td>Phone / voicemail</td><td>Required</td><td>IVR by intent</td></tr>
+            <tr><td>Knowledge base</td><td>Required</td><td>In-app widgets</td></tr>
+            <tr><td>CSAT survey</td><td>On every solve</td><td>Low-score alert</td></tr>
+            <tr><td>AI triage</td><td>Suggested intent</td><td>Suggested reply</td></tr>
+            <tr><td>Chatbot</td><td>Optional</td><td>Required for access/status/docs</td></tr>
+            <tr><td>Status page</td><td>Required</td><td>Auto-subscribe VIPs</td></tr>
+          </tbody>
+        </table>
+        <p class="lead">Selection bar: SOC 2, SSO, audit export, bank-acceptable residency, API for this dashboard.</p>
+      </article>
+      <article class="panel">
+        <h2>Workflows to automate</h2>
+        <ul>
+          <li><strong>Routing</strong> — intent + team + <strong>contact region</strong> (APAC / EMEA / AMER); VIP skip-L1</li>
+          <li><strong>SLA alerts</strong> — 80% page to assignee and lead</li>
+          <li><strong>Status updates</strong> — pending-customer nudge at 24h</li>
+          <li><strong>Follow-up</strong> — CSAT T+1h; low score to the lead</li>
+          <li><strong>Incident notice</strong> — email + in-app banner</li>
+          <li><strong>Health check</strong> — no login 14 days → CSM + Support</li>
+        </ul>
+      </article>
+    </section>
+
+    <article class="panel">
+      <h2>AI: what it may do, what it may not</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Handle without a human</h3>
+          <ul>
+            <li>Password reset and unlock</li>
+            <li>Application / loan status</li>
+            <li>Documentation lookups and checklists</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Human only</h3>
+          <ul>
+            <li>Eligibility and credit judgment</li>
+            <li>SBA program interpretation on mixed files</li>
+            <li>Complaints, VIP emotion, examiner inquiries</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lead">AI may suggest an article or reply. AI may not invent program rules. Confidence below 0.7 hands to L1.</p>
+    </article>
+
+    <article class="panel">
+      <h2>Proactive communication</h2>
+      <table>
+        <thead><tr><th>Touchpoint</th><th>Trigger</th><th>Audience</th><th>Mode</th></tr></thead>
+        <tbody>
+          <tr><td>Incident notice</td><td>Sev-1 / Sev-2 opened</td><td>All live banks; VIP first; send in regional hours</td><td>Auto + named owner on VIP</td></tr>
+          <tr><td>Maintenance</td><td>T-48h and T-2h</td><td>All live banks</td><td>Automated</td></tr>
+          <tr><td>Health check</td><td>No login 14 days</td><td>CSM + Support, then bank ops</td><td>Automated draft</td></tr>
+          <tr><td>Onboarding pulse</td><td>Day 7 / 21 / 45</td><td>New banks</td><td>Automated</td></tr>
+        </tbody>
+      </table>
+    </article>
+
     <article class="panel">
       <h2>Contact region routing</h2>
       <p class="lead">Every ticket inherits APAC, EMEA, or AMER from the bank contact. Chat and phone sit in the regional queue; email is follow-the-sun.</p>

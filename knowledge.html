@@ -17,6 +17,7 @@
         <p class="subtitle">Self-service for bank users. Internal playbooks for specialists. Built to deflect resets, status, and document lookups.</p>
       </div>
     </header>
+
     <section class="cards">
       <article class="panel"><h2>Access</h2><p class="lead">Passwords, unlocks, new credit analysts, SSO.</p><p>Primary deflector. Target: no human ticket unless the lock is policy-related.</p></article>
       <article class="panel"><h2>Status</h2><p class="lead">Where a file sits after submit.</p><p>Chatbot and in-app widget read the pipeline object. Humans only if the timestamp is stale.</p></article>
@@ -25,14 +26,35 @@
       <article class="panel"><h2>SBA 7(a) and 504</h2><p class="lead">Program chooser, exhibits, third-party reports.</p><p>Never a credit decision. Escalate mixed-use and change-of-ownership.</p></article>
       <article class="panel"><h2>Incidents</h2><p class="lead">Banners, status, what to tell the bank EVP.</p><p>Auto-subscribe VIP banks. Next update time is mandatory.</p></article>
     </section>
+
     <article class="panel faq">
       <h2>Customer FAQ (help center)</h2>
-      <details open><summary>How do I reset a portal password?</summary><p>Use Forgot password on the login page. Bank admins can also reset from Admin → Users. After three failed attempts the account locks for 15 minutes. This should not need a ticket.</p></details>
-      <details><summary>Where is my loan in underwriting?</summary><p>Open Pipeline and select the loan. Status values: Draft, Submitted, In underwriting, Credit decision, Docs requested, Ready to close, Booked. The timestamp is the last human action.</p></details>
-      <details><summary>What documents do you need for owner-occupied CRE?</summary><p>Entity docs, debt schedule, two years of business tax returns, YTD financials, insurance binder, and personal PFS for guarantors. Investor CRE also needs a rent roll.</p></details>
-      <details><summary>Should this file be 7(a) or 504?</summary><p>7(a) is typically working capital, acquisition, and refinance. 504 is major fixed assets via a CDC and the bank. This is a chooser, not an approval. Ask L2 SBA if the use of proceeds is mixed or this is a change of ownership.</p></details>
-      <details><summary>Who do I call if a live close is blocked?</summary><p>Phone the P1 line. VIP banks skip the L1 queue. You will get a named owner and a next update time within 15 minutes (10 minutes for VIP).</p></details>
+      <details open>
+        <summary>How do I reset a portal password?</summary>
+        <p>Use Forgot password on the login page. Bank admins can also reset from Admin → Users. After three failed attempts the account locks for 15 minutes. This should not need a ticket.</p>
+      </details>
+      <details>
+        <summary>Where is my loan in underwriting?</summary>
+        <p>Open Pipeline and select the loan. Status values: Draft, Submitted, In underwriting, Credit decision, Docs requested, Ready to close, Booked. The timestamp is the last human action.</p>
+      </details>
+      <details>
+        <summary>What documents do you need for owner-occupied CRE?</summary>
+        <p>Entity docs, debt schedule, two years of business tax returns, YTD financials, insurance binder, and personal PFS for guarantors. Investor CRE also needs a rent roll.</p>
+      </details>
+      <details>
+        <summary>Should this file be 7(a) or 504?</summary>
+        <p>7(a) is typically working capital, acquisition, and refinance. 504 is major fixed assets via a CDC and the bank. This is a chooser, not an approval. Ask L2 SBA if the use of proceeds is mixed or this is a change of ownership.</p>
+      </details>
+      <details>
+        <summary>Who do I call if a live close is blocked?</summary>
+        <p>Phone the P1 line for your contact region. VIP banks skip the L1 queue. You will get a named owner and a next update time within 15 minutes (10 minutes for VIP), in your local hours.</p>
+      </details>
+      <details>
+        <summary>What are support hours in APAC, EMEA, and AMER?</summary>
+        <p>AMER: Mon–Fri 08:00–20:00 ET. EMEA: Mon–Fri 08:00–20:00 CET. APAC: Mon–Fri 08:00–20:00 SGT. P1 is 24/7 and is routed to the on-call in your region first.</p>
+      </details>
     </article>
+
     <article class="panel">
       <h2>In-app guidance (planned surfaces)</h2>
       <table>

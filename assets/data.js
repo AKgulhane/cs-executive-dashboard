@@ -27,13 +27,17 @@ window.SUPPORT = {
         { name: "Phone", value: 18 }
       ],
       byRegion: [
-        { name: "AMER", value: 92, sla: 98.1, open: 7 },
-        { name: "EMEA", value: 61, sla: 96.4, open: 8 },
-        { name: "APAC", value: 33, sla: 94.8, open: 3 }
+        { name: "AMER", value: 92, sla: 98.1, open: 7, hours: "Mon–Fri 08:00–20:00 ET", tz: "America/New_York", banks: "Northline Bank, First Harbor" },
+        { name: "EMEA", value: 61, sla: 96.4, open: 8, hours: "Mon–Fri 08:00–20:00 CET", tz: "Europe/London", banks: "Helios Health, Cobalt Logistics" },
+        { name: "APAC", value: 33, sla: 94.8, open: 3, hours: "Mon–Fri 08:00–20:00 SGT", tz: "Asia/Singapore", banks: "Aperture Retail" }
       ]
     },
     mttr: { hours: 3.8, targetHours: 6, delta: "−0.6h vs July",
-      byPriority: [{ name: "P1", hours: 1.4 }, { name: "P2", hours: 4.1 }, { name: "P3", hours: 7.6 }] },
+      byPriority: [
+        { name: "P1", hours: 1.4 },
+        { name: "P2", hours: 4.1 },
+        { name: "P3", hours: 7.6 }
+      ] },
     deflection: { pct: 28, target: 35, delta: "help center 19 · bot 9" },
     escalations: {
       open: 4, month: 9,
@@ -45,36 +49,123 @@ window.SUPPORT = {
       ]
     },
     customers: [
-      { id: "BNK-NLB", name: "Northline Bank", region: "AMER", city: "New York", hours: "08:00–20:00 ET", tier: "vip", stage: "live", health: "critical", csat: null, openTickets: 1, escalations: 1, lastTouch: "6h ago", owner: "Priya Nair",
+      {
+        id: "BNK-NLB",
+        name: "Northline Bank",
+        region: "AMER",
+        city: "New York",
+        hours: "08:00–20:00 ET",
+        tier: "vip",
+        stage: "live",
+        health: "critical",
+        csat: null,
+        openTickets: 1,
+        escalations: 1,
+        lastTouch: "6h ago",
+        owner: "Priya Nair",
         headline: "P1 live close blocked — Head of Support on the bridge.",
         risks: ["Portal timeout on a funded close", "Executive-originated; reputation risk"],
         wins: ["VIP path fired in 8 minutes"],
         ask: "Call Diana Cho with a next-update time, not a root-cause guess.",
-        talkingPoints: ["We own CS-1842 and the next update is 05:00 UTC.", "Identity failover is the suspected path; Engineering is on the bridge."] },
-      { id: "BNK-HLH", name: "Helios Health", region: "EMEA", city: "London", hours: "08:00–20:00 CET", tier: "vip", stage: "live", health: "watch", csat: 90, openTickets: 1, escalations: 1, lastTouch: "1d ago", owner: "Marcus Lee",
+        talkingPoints: [
+          "We own CS-1842 and the next update is 05:00 UTC.",
+          "Identity failover is the suspected path; Engineering is on the bridge.",
+          "We will confirm whether the close can complete before the maintenance window on 23 Aug."
+        ]
+      },
+      {
+        id: "BNK-HLH",
+        name: "Helios Health",
+        region: "EMEA",
+        city: "London",
+        hours: "08:00–20:00 CET",
+        tier: "vip",
+        stage: "live",
+        health: "watch",
+        csat: 90,
+        openTickets: 1,
+        escalations: 1,
+        lastTouch: "1d ago",
+        owner: "Marcus Lee",
         headline: "504 package completeness — policy question, not a defect.",
-        risks: ["SBA SME still in academy"],
+        risks: ["SBA SME still in academy", "Wrong exhibit list would be a credit-adjacent miss"],
         wins: ["First response inside VIP SLA"],
-        ask: "Have Reed or Priya sit with Sara on the third-party report list.",
-        talkingPoints: ["This is a 504 file-completeness question, not an eligibility decision.", "We will send the CDC-aligned exhibit list today."] },
-      { id: "BNK-APR", name: "Aperture Retail", region: "APAC", city: "Singapore", hours: "08:00–20:00 SGT", tier: "standard", stage: "at_risk", health: "at_risk", csat: 78, openTickets: 1, escalations: 1, lastTouch: "2d ago", owner: "Elena Vargas",
+        ask: "Have Reed or Priya sit with Sara on the third-party report list before it goes to the bank.",
+        talkingPoints: [
+          "This is a 504 file-completeness question, not an eligibility decision.",
+          "We will send the CDC-aligned exhibit list today.",
+          "No product defect is indicated."
+        ]
+      },
+      {
+        id: "BNK-APR",
+        name: "Aperture Retail",
+        region: "APAC",
+        city: "Singapore",
+        hours: "08:00–20:00 SGT",
+        tier: "standard",
+        stage: "at_risk",
+        health: "at_risk",
+        csat: 78,
+        openTickets: 1,
+        escalations: 1,
+        lastTouch: "2d ago",
+        owner: "Elena Vargas",
         headline: "At-risk: term-sheet mapping plus 11 days without a successful submit.",
-        risks: ["Adoption stall after a release", "L3 aging while AMER sleeps"],
+        risks: ["Adoption stall after a release", "CSAT below department", "L3 aging 2 days"],
         wins: ["Health-check email already sent"],
         ask: "CSM + Support joint call this week; do not wait on the L3 fix alone.",
-        talkingPoints: ["We see the mapping issue after the product change (CS-1819).", "Engineering has it; you will get a workaround or a date today."] },
-      { id: "BNK-CBL", name: "Cobalt Logistics", region: "EMEA", city: "Frankfurt", hours: "08:00–20:00 CET", tier: "standard", stage: "live", health: "watch", csat: 86, openTickets: 1, escalations: 1, lastTouch: "4d ago", owner: "Jonah Kim",
+        talkingPoints: [
+          "We see the mapping issue after the product change (CS-1819).",
+          "Engineering has it; you will get a workaround or a date today.",
+          "Separately, we want a 20-minute working session so submits resume."
+        ]
+      },
+      {
+        id: "BNK-CBL",
+        name: "Cobalt Logistics",
+        region: "EMEA",
+        city: "Frankfurt",
+        hours: "08:00–20:00 CET",
+        tier: "standard",
+        stage: "live",
+        health: "watch",
+        csat: 86,
+        openTickets: 1,
+        escalations: 1,
+        lastTouch: "4d ago",
+        owner: "Jonah Kim",
         headline: "CRE exhibit question aging 4 days on L2 Lending.",
-        risks: ["Oldest non-VIP escalation"],
+        risks: ["Oldest non-VIP escalation", "Looks like a KB gap, not a hard problem"],
         wins: ["In-product intake captured loan context"],
-        ask: "Publish the owner-occupied CRE checklist and close today.",
-        talkingPoints: ["Standard owner-occupied CRE exhibits — we will confirm Reed’s list today."] },
-      { id: "BNK-FHC", name: "First Harbor", region: "AMER", city: "Boston", hours: "08:00–20:00 ET", tier: "standard", stage: "onboarding", health: "on_track", csat: 100, openTickets: 0, escalations: 0, lastTouch: "5d ago", owner: "Elena Vargas",
+        ask: "Publish the owner-occupied CRE checklist answer and close today.",
+        talkingPoints: [
+          "Standard owner-occupied CRE exhibits — we will confirm Reed’s list today.",
+          "This should become a help-center article so the next bank does not wait."
+        ]
+      },
+      {
+        id: "BNK-FHC",
+        name: "First Harbor",
+        region: "AMER",
+        city: "Boston",
+        hours: "08:00–20:00 ET",
+        tier: "standard",
+        stage: "onboarding",
+        health: "on_track",
+        csat: 100,
+        openTickets: 0,
+        escalations: 0,
+        lastTouch: "5d ago",
+        owner: "Elena Vargas",
         headline: "Onboarding clean — password reset solved in 10 minutes, CSAT 5.",
-        risks: ["Quiet after go-live"],
-        wins: ["Macro deflection worked"],
+        risks: ["Quiet after go-live; watch for a silent 14-day gap"],
+        wins: ["Macro deflection worked", "Academy-complete L1 handled it"],
         ask: "Day-21 onboarding pulse; no executive action.",
-        talkingPoints: ["Access is working. Next check-in is the day-21 pulse."] }
+        talkingPoints: [
+          "Access is working. Next check-in is the day-21 onboarding pulse."
+        ]
+      }
     ],
     maintenance: {
       next: "23 Aug, 02:00–04:00 UTC",

@@ -23,8 +23,10 @@
         <span class="badge">Sample data — starter set</span>
       </div>
     </header>
+
     <section class="kpis" id="kpis"></section>
     <article class="panel briefing" id="aiStrip"></article>
+
     <section class="grid-2">
       <article class="panel">
         <h2>SLA attainment</h2>
@@ -35,17 +37,25 @@
       </article>
       <article class="panel">
         <h2>Cases handled</h2>
-        <p class="lead">Volume this period, plus live backlog and channel mix.</p>
+        <p class="lead">Volume this period, plus live backlog, channel, and contact region (APAC / EMEA / AMER).</p>
         <div class="stat-split" id="caseSplit"></div>
         <div id="caseTypes"></div>
+        <p class="lead" style="margin:16px 0 8px">By customer contact region</p>
+        <table>
+          <thead><tr><th>Region</th><th>Hours</th><th>Cases</th><th>SLA</th><th>Open</th></tr></thead>
+          <tbody id="caseRegions"></tbody>
+        </table>
       </article>
     </section>
+
     <section class="grid-2">
       <article class="panel">
         <h2>Escalations</h2>
         <p class="lead">Open L2 / L3 / exec items. VIP cases skip the L1 queue.</p>
         <table>
-          <thead><tr><th>Case</th><th>Customer</th><th>Sev</th><th>Path</th><th>Owner</th><th>Age</th></tr></thead>
+          <thead>
+            <tr><th>Case</th><th>Customer</th><th>Region</th><th>Sev</th><th>Path</th><th>Owner</th><th>Age</th></tr>
+          </thead>
           <tbody id="escalations"></tbody>
         </table>
       </article>
@@ -72,14 +82,17 @@
       return "off";
     };
     const pill = (kind, text) => `<span class="status-pill ${kind}">${text}</span>`;
+
     document.getElementById("periodLabel").textContent = SUPPORT.period;
     document.getElementById("asOf").textContent = SUPPORT.asOf;
+
     const slaTone = tone(D.sla.attainment, D.sla.target);
     const mttrTone = tone(D.mttr.hours, D.mttr.targetHours, true);
     const csatTone = tone(D.csat.pct, D.csat.target);
     const frtTone = tone(D.frt.hours, D.frt.target, true);
     const defTone = tone(D.deflection.pct, D.deflection.target);
     const escTone = D.escalations.open >= 5 ? "off" : D.escalations.open >= 3 ? "watch" : "on";
+
     document.getElementById("kpis").innerHTML = `
       <article class="kpi"><div class="label">SLA</div><div class="value">${D.sla.attainment}%</div><div class="meta">${pill(slaTone, "On target")} · ${D.sla.delta}</div></article>
       <article class="kpi"><div class="label">CSAT</div><div class="value">${D.csat.pct}%</div><div class="meta">${pill(csatTone, "n=" + D.csat.n)} · ${D.csat.delta}</div></article>
@@ -88,25 +101,40 @@
       <article class="kpi"><div class="label">Cases handled</div><div class="value">${D.cases.handled}</div><div class="meta">${D.cases.delta}</div></article>
       <article class="kpi"><div class="label">Ticket deflection</div><div class="value">${D.deflection.pct}%</div><div class="meta">${pill(defTone, "Target " + D.deflection.target + "%")} · ${D.deflection.delta}</div></article>
       <article class="kpi"><div class="label">Escalations</div><div class="value">${D.escalations.open}</div><div class="meta">${pill(escTone, "Open")} · ${D.escalations.month} this month</div></article>
-      <article class="kpi"><div class="label">Next maintenance</div><div class="value" style="font-size:1.1rem;line-height:1.25;margin-top:10px">${D.maintenance.next}</div><div class="meta">Customer comms due 48h prior</div></article>`;
+      <article class="kpi"><div class="label">Next maintenance</div><div class="value" style="font-size:1.1rem;line-height:1.25;margin-top:10px">${D.maintenance.next}</div><div class="meta">Customer comms due 48h prior</div></article>
+    `;
+
     document.getElementById("slaRows").innerHTML = D.sla.byPriority.map((row) => {
       const cls = row.value >= row.target ? "" : row.value >= row.target - 2 ? "warn" : "bad";
       return `<div class="row"><div>${row.name}</div><div class="bar"><span class="${cls}" style="width:${Math.min(row.value,100)}%"></span></div><div>${row.value}%</div></div>`;
     }).join("");
+
     const maxMttr = Math.max(...D.mttr.byPriority.map((x) => x.hours), D.mttr.targetHours);
     document.getElementById("mttrRows").innerHTML = D.mttr.byPriority.map((row) => {
       const cls = row.hours <= D.mttr.targetHours ? "" : "warn";
       return `<div class="row"><div>${row.name}</div><div class="bar"><span class="${cls}" style="width:${(row.hours/maxMttr)*100}%"></span></div><div>${row.hours}h</div></div>`;
     }).join("");
-    document.getElementById("caseSplit").innerHTML = `<div class="stat"><b>${D.cases.open}</b><span>Open</span></div><div class="stat"><b>${D.cases.inProgress}</b><span>In progress</span></div><div class="stat"><b>${D.cases.resolved}</b><span>Resolved</span></div>`;
+
+    document.getElementById("caseSplit").innerHTML = `
+      <div class="stat"><b>${D.cases.open}</b><span>Open</span></div>
+      <div class="stat"><b>${D.cases.inProgress}</b><span>In progress</span></div>
+      <div class="stat"><b>${D.cases.resolved}</b><span>Resolved</span></div>`;
+
     const maxType = Math.max(...D.cases.byType.map((x) => x.value));
     document.getElementById("caseTypes").innerHTML = D.cases.byType.map((row) =>
       `<div class="row"><div>${row.name}</div><div class="bar"><span style="width:${(row.value/maxType)*100}%"></span></div><div>${row.value}</div></div>`
     ).join("");
+
+    document.getElementById("caseRegions").innerHTML = D.cases.byRegion.map((row) => {
+      const kind = row.sla >= 95 ? "on" : "watch";
+      return `<tr><td>${row.name}</td><td>${row.hours}</td><td>${row.value}</td><td>${pill(kind, row.sla + "%")}</td><td>${row.open}</td></tr>`;
+    }).join("");
+
     document.getElementById("escalations").innerHTML = D.escalations.items.map((item) => {
       const kind = item.severity === "P1" ? "off" : item.severity === "P2" ? "watch" : "on";
-      return `<tr><td>${item.id}</td><td>${item.customer}</td><td>${pill(kind, item.severity)}</td><td>${item.path}</td><td>${item.owner}</td><td>${item.age}</td></tr>`;
+      return `<tr><td>${item.id}</td><td>${item.customer}</td><td>${item.region}</td><td>${pill(kind, item.severity)}</td><td>${item.path}</td><td>${item.owner}</td><td>${item.age}</td></tr>`;
     }).join("");
+
     document.getElementById("windows").innerHTML = D.maintenance.windows.map((w) => {
       const kind = w.status === "Completed" ? "on" : "watch";
       return `<div class="mw"><div class="when"><b>${w.date}</b>${w.time}</div><div><strong>${w.title}</strong><br /><span style="color:var(--muted)">${w.impact}</span></div><div>${pill(kind, w.status)}</div></div>`;

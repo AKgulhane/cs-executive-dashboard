@@ -17,11 +17,14 @@
         <p class="subtitle">Written targets for first response, resolution, CSAT, and deflection. Clocks pause only for documented reasons.</p>
       </div>
     </header>
+
     <article class="panel">
       <h2>Priority policies</h2>
-      <p class="lead">VIP banks are one step tighter on first response. P1 uses clock minutes. P3–P4 use business minutes in the customer’s contact region, not a single ET clock.</p>
+      <p class="lead">VIP banks are one step tighter on first response. P1 uses clock minutes. P3–P4 use <strong>business minutes in the customer’s contact region</strong>, not a single ET clock.</p>
       <table>
-        <thead><tr><th>Priority</th><th>Meaning</th><th>First response</th><th>Resolve</th><th>VIP first response</th></tr></thead>
+        <thead>
+          <tr><th>Priority</th><th>Meaning</th><th>First response</th><th>Resolve</th><th>VIP first response</th></tr>
+        </thead>
         <tbody>
           <tr><td>P1</td><td>Production down or funds movement blocked</td><td>15 min</td><td>4 hours</td><td>10 min</td></tr>
           <tr><td>P2</td><td>Major workflow blocked</td><td>1 hour</td><td>8 hours</td><td>30 min</td></tr>
@@ -30,9 +33,37 @@
         </tbody>
       </table>
     </article>
+
+    <section class="grid-2">
+      <article class="panel">
+        <h2>Operating metrics</h2>
+        <table>
+          <thead><tr><th>Metric</th><th>Phase 1 target</th><th>This board</th></tr></thead>
+          <tbody>
+            <tr><td>SLA attainment</td><td>≥ 95%</td><td>97.2%</td></tr>
+            <tr><td>CSAT (4–5)</td><td>≥ 88%</td><td>91%</td></tr>
+            <tr><td>First response (median)</td><td>≤ 2h</td><td>1.6h</td></tr>
+            <tr><td>Resolution time (MTTR)</td><td>≤ 6h</td><td>3.8h</td></tr>
+            <tr><td>Ticket deflection</td><td>≥ 35%</td><td>28% — below target</td></tr>
+          </tbody>
+        </table>
+      </article>
+      <article class="panel">
+        <h2>Clock rules</h2>
+        <ul>
+          <li>Start first-response clock on create.</li>
+          <li>Pause only for customer-pending, bank-core / E-Tran wait, or announced maintenance.</li>
+          <li>P1 cannot sit in pending without an incident or customer-pause event.</li>
+          <li>80% of SLA → page assignee and lead.</li>
+          <li>Breach → Head of Support on P1; Team Lead on P2.</li>
+        </ul>
+        <p class="lead">P1 is 24/7 on-call in the customer’s region first.</p>
+      </article>
+    </section>
+
     <article class="panel">
       <h2>Business hours by contact region</h2>
-      <p class="lead">A ticket inherits APAC, EMEA, or AMER from the bank contact. Business-minute SLAs run on that region’s clock. P1 is 24/7, routed to the regional on-call first.</p>
+      <p class="lead">A ticket inherits APAC, EMEA, or AMER from the bank contact. Business-minute SLAs run on that region’s clock.</p>
       <table>
         <thead><tr><th>Region</th><th>Business hours</th><th>Sample banks</th><th>This period</th></tr></thead>
         <tbody>
