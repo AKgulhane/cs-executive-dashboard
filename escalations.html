@@ -19,8 +19,8 @@
     </header>
     <article class="panel">
       <h2>Default path</h2>
-      <pre class="flow">Customer
-   │
+      <pre class="flow">Customer (APAC / EMEA / AMER)
+   │  route to regional on-call first
    ▼
 L1 Support Specialist     macros, KB, resets, status, docs
    │  cannot resolve, or SLA at 80%
@@ -36,31 +36,30 @@ Executive                 Head of Support + CS + Credit</pre>
     <section class="grid-2">
       <article class="panel">
         <h2>Special paths</h2>
-        <div class="path-step"><div class="when"><b>VIP</b>P1 / exec-originated</div><div>Skip L1. Assign <strong>named support owner</strong> and CSM. Head of Support stays on the thread until first customer update.</div></div>
-        <div class="path-step"><div class="when"><b>Compliance</b>complaint / fair lending</div><div>Open a parallel Compliance ticket. Do not wait on L3. No AI-authored reply.</div></div>
-        <div class="path-step"><div class="when"><b>Credit</b>eligibility</div><div>Support does not invent a credit decision. Conference Credit. Point at the article, then hand off.</div></div>
+        <div class="path-step"><div class="when"><b>VIP</b>P1 / exec-originated</div><div>Skip L1. Assign named support owner and CSM.</div></div>
+        <div class="path-step"><div class="when"><b>Region</b>APAC / EMEA / AMER</div><div>Route first to the on-call in the customer contact region. Do not park an APAC P2 on the ET queue overnight.</div></div>
+        <div class="path-step"><div class="when"><b>Compliance</b>complaint / fair lending</div><div>Open a parallel Compliance ticket. Do not wait on L3.</div></div>
       </article>
       <article class="panel">
-        <h2>Required fields on every escalate</h2>
+        <h2>Required fields</h2>
         <ul>
           <li>From level → to level</li>
           <li>Customer impact in one sentence</li>
-          <li>What was already tried</li>
+          <li>Customer contact region (APAC / EMEA / AMER)</li>
           <li>Named owner</li>
-          <li>Next update time (never “soon”)</li>
+          <li>Next update time in the bank’s local hours</li>
         </ul>
-        <p class="lead">Aging rule: no open VIP escalation older than 48 hours without an exec note.</p>
       </article>
     </section>
     <article class="panel">
       <h2>Open board (sample)</h2>
       <table>
-        <thead><tr><th>Case</th><th>Bank</th><th>Sev</th><th>Path</th><th>Owner</th><th>Age</th><th>Next update</th></tr></thead>
+        <thead><tr><th>Case</th><th>Bank</th><th>Region</th><th>Sev</th><th>Path</th><th>Owner</th><th>Age</th><th>Next update</th></tr></thead>
         <tbody>
-          <tr><td>CS-1842</td><td>Northline Bank</td><td>P1</td><td>VIP → Exec</td><td>Priya N.</td><td>6h</td><td>05:00 UTC</td></tr>
-          <tr><td>CS-1831</td><td>Helios Health</td><td>P2</td><td>L1 → L2 SBA</td><td>Sara N.</td><td>1d</td><td>14:00 UTC</td></tr>
-          <tr><td>CS-1819</td><td>Aperture Retail</td><td>P2</td><td>L1 → L3 Eng</td><td>Elena V.</td><td>2d</td><td>16:00 UTC</td></tr>
-          <tr><td>CS-1804</td><td>Cobalt Logistics</td><td>P3</td><td>L1 → L2 Lending</td><td>Reed O.</td><td>4d</td><td>18:00 UTC</td></tr>
+          <tr><td>CS-1842</td><td>Northline Bank</td><td>AMER</td><td>P1</td><td>VIP → Exec</td><td>Priya N.</td><td>6h</td><td>05:00 UTC</td></tr>
+          <tr><td>CS-1831</td><td>Helios Health</td><td>EMEA</td><td>P2</td><td>L1 → L2 SBA</td><td>Sara N.</td><td>1d</td><td>14:00 UTC</td></tr>
+          <tr><td>CS-1819</td><td>Aperture Retail</td><td>APAC</td><td>P2</td><td>L1 → L3 Eng</td><td>Elena V.</td><td>2d</td><td>16:00 UTC</td></tr>
+          <tr><td>CS-1804</td><td>Cobalt Logistics</td><td>EMEA</td><td>P3</td><td>L1 → L2 Lending</td><td>Reed O.</td><td>4d</td><td>18:00 UTC</td></tr>
         </tbody>
       </table>
     </article>
