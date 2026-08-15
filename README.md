@@ -1,8 +1,10 @@
 # Customer Success Executive Dashboard
 
-Public starter dashboard for Customer Success executive management.
+**Live dashboard (no install):** [https://akgulhane.github.io/](https://akgulhane.github.io/)
 
-Live page: open [`index.html`](./index.html) in a browser, or enable GitHub Pages on this repository (Settings → Pages → Deploy from branch `main` / root).
+Share that link. Anyone can open it in a browser. Nothing to download or install.
+
+Source repo: this project. Hosted site: [AKgulhane.github.io](https://github.com/AKgulhane/AKgulhane.github.io).
 
 ## What’s on the board
 
@@ -14,17 +16,8 @@ Live page: open [`index.html`](./index.html) in a browser, or enable GitHub Page
 | **Escalations** | Open executive / specialist cases with owner and age |
 | **Maintenance window** | Next planned change window and upcoming / completed work |
 
-The first cut uses **sample data** so the page is usable immediately. Numbers are labeled as sample on the dashboard.
+Numbers on the page are **sample data** so the board is usable immediately.
 
 ## Edit the numbers
 
-All starter figures live in the `DATA` object near the bottom of `index.html`. Change the values, save, and refresh the page. No build step.
-
-## Local preview
-
-```bash
-# from this folder
-python -m http.server 8080
-```
-
-Then open `http://localhost:8080`.
+Change the `DATA` object in `index.html`, then update the same file in [AKgulhane.github.io](https://github.com/AKgulhane/AKgulhane.github.io) so the live site refreshes.
