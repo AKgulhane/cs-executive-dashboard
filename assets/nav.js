@@ -2,6 +2,7 @@
   const here = (location.pathname.split("/").pop() || "index.html");
   const links = [
     ["index.html", "Dashboard"],
+    ["insights.html", "AI insights"],
     ["team.html", "Team"],
     ["slas.html", "SLAs & metrics"],
     ["escalations.html", "Escalations"],
@@ -18,7 +19,6 @@
     ).join("");
   const wrap = document.querySelector(".wrap");
   wrap.insertBefore(nav, wrap.firstChild);
-
   const foot = document.createElement("footer");
   foot.className = "site";
   foot.innerHTML = `Customer Support function · sample data · <a href="https://github.com/AKgulhane/cs-executive-dashboard">source</a> · <a href="https://github.com/AKgulhane/cs-executive-dashboard/tree/main/docs">PRD / BRD</a>`;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI insights — Support / Success</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1>AI insights</h1>
+        <p class="subtitle">Executive summary for the department, a brief per bank, and a chat that only answers from this period’s board.</p>
+      </div>
+    </header>
+    <article class="panel briefing" id="deptBrief"></article>
+    <section class="grid-2">
+      <article class="panel">
+        <h2>Customers</h2>
+        <p class="lead">Click a bank for the individual brief, risks, and talking points.</p>
+        <div class="customer-list" id="customerList"></div>
+      </article>
+      <article class="panel" id="customerDetail"></article>
+    </section>
+    <article class="panel">
+      <h2>Ask the board</h2>
+      <p class="lead">Top executive questions, or type your own. Answers cite the tables they used. This page does not call a model — GitHub Pages cannot hold an API key.</p>
+      <div class="chips" id="presetChips"></div>
+      <div class="chat">
+        <div class="chat-log" id="chatLog"></div>
+        <form class="chat-form" id="chatForm">
+          <input id="chatInput" type="text" placeholder="Ask about the department or a bank…" autocomplete="off" />
+          <button type="submit">Ask</button>
+        </form>
+      </div>
+    </article>
+  </div>
+  <script src="assets/data.js"></script>
+  <script src="assets/nav.js"></script>
+  <script src="assets/insights.js"></script>
+</body>
+</html>
