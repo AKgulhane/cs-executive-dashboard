@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support data schema</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1>Data schema</h1>
+        <p class="subtitle">Tables behind the dashboard. Load <code>db/schema.sql</code> and <code>db/seed.sql</code> into SQLite to create the database.</p>
+      </div>
+    </header>
+    <article class="panel">
+      <h2>How to create the database</h2>
+      <pre class="flow">sqlite3 db/support.db &lt; db/schema.sql
+sqlite3 db/support.db &lt; db/seed.sql
+sqlite3 db/support.db "SELECT metric_date, csat_pct, mttr_hours, deflection_pct FROM daily_metrics;"</pre>
+      <p class="lead">Full column dictionary: <a href="https://github.com/AKgulhane/cs-executive-dashboard/blob/main/docs/data-schema.md">docs/data-schema.md</a>. PRD and BRD sit next to it.</p>
+    </article>
+    <article class="panel">
+      <h2>Tables</h2>
+      <table>
+        <thead><tr><th>Table</th><th>What it holds</th><th>Dashboard use</th></tr></thead>
+        <tbody>
+          <tr><td>teams / agents</td><td>Org chart and academy status</td><td>Team page</td></tr>
+          <tr><td>banks / contacts</td><td>Institutions, VIP flag, named owners</td><td>Escalations, VIP path</td></tr>
+          <tr><td>sla_policies</td><td>Priority × tier → minutes</td><td>SLA tile</td></tr>
+          <tr><td>tickets</td><td>Every email, chat, phone, in-product case</td><td>Cases handled</td></tr>
+          <tr><td>ticket_events</td><td>Immutable audit log</td><td>FRT, MTTR, pauses</td></tr>
+          <tr><td>escalations</td><td>L2 / L3 / Exec / Compliance</td><td>Escalations tile</td></tr>
+          <tr><td>knowledge_articles</td><td>Help center + internal playbooks</td><td>KB, deflection</td></tr>
+          <tr><td>macros / automations</td><td>Resets, routing, SLA alerts</td><td>Operations</td></tr>
+          <tr><td>comms_touchpoints</td><td>Incident, maintenance, health checks</td><td>Proactive comms</td></tr>
+          <tr><td>incidents / maintenance_windows</td><td>Sev events and change windows</td><td>Maintenance tile</td></tr>
+          <tr><td>ai_deflections</td><td>Bot / help-center resolutions</td><td>Deflection %</td></tr>
+          <tr><td>daily_metrics</td><td>One row per day</td><td>All KPI tiles</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="panel">
+      <h2>daily_metrics (board row)</h2>
+      <table>
+        <thead><tr><th>Date</th><th>Handled</th><th>Open</th><th>SLA%</th><th>CSAT%</th><th>FRT h</th><th>MTTR h</th><th>Deflect%</th><th>Esc open</th></tr></thead>
+        <tbody><tr><td>2026-08-16</td><td>186</td><td>18</td><td>97.2</td><td>91.0</td><td>1.6</td><td>3.8</td><td>28.0</td><td>4</td></tr></tbody>
+      </table>
+    </article>
+  </div>
+  <script src="assets/nav.js"></script>
+</body>
+</html>

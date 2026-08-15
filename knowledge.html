@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knowledge base and help center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1>Knowledge base</h1>
+        <p class="subtitle">Self-service for bank users. Internal playbooks for specialists. Built to deflect resets, status, and document lookups.</p>
+      </div>
+    </header>
+    <section class="cards">
+      <article class="panel"><h2>Access</h2><p class="lead">Passwords, unlocks, new credit analysts, SSO.</p><p>Primary deflector. Target: no human ticket unless the lock is policy-related.</p></article>
+      <article class="panel"><h2>Status</h2><p class="lead">Where a file sits after submit.</p><p>Chatbot and in-app widget read the pipeline object. Humans only if the timestamp is stale.</p></article>
+      <article class="panel"><h2>Documents</h2><p class="lead">Commercial and SBA checklists.</p><p>In-app guidance on the upload page. Missing-doc email is a macro, not a novel.</p></article>
+      <article class="panel"><h2>Commercial lending</h2><p class="lead">CRE, C&amp;I, term sheets, covenants language.</p><p>Consultative. L2 Lending owns article accuracy.</p></article>
+      <article class="panel"><h2>SBA 7(a) and 504</h2><p class="lead">Program chooser, exhibits, third-party reports.</p><p>Never a credit decision. Escalate mixed-use and change-of-ownership.</p></article>
+      <article class="panel"><h2>Incidents</h2><p class="lead">Banners, status, what to tell the bank EVP.</p><p>Auto-subscribe VIP banks. Next update time is mandatory.</p></article>
+    </section>
+    <article class="panel faq">
+      <h2>Customer FAQ (help center)</h2>
+      <details open><summary>How do I reset a portal password?</summary><p>Use Forgot password on the login page. Bank admins can also reset from Admin → Users. After three failed attempts the account locks for 15 minutes. This should not need a ticket.</p></details>
+      <details><summary>Where is my loan in underwriting?</summary><p>Open Pipeline and select the loan. Status values: Draft, Submitted, In underwriting, Credit decision, Docs requested, Ready to close, Booked. The timestamp is the last human action.</p></details>
+      <details><summary>What documents do you need for owner-occupied CRE?</summary><p>Entity docs, debt schedule, two years of business tax returns, YTD financials, insurance binder, and personal PFS for guarantors. Investor CRE also needs a rent roll.</p></details>
+      <details><summary>Should this file be 7(a) or 504?</summary><p>7(a) is typically working capital, acquisition, and refinance. 504 is major fixed assets via a CDC and the bank. This is a chooser, not an approval. Ask L2 SBA if the use of proceeds is mixed or this is a change of ownership.</p></details>
+      <details><summary>Who do I call if a live close is blocked?</summary><p>Phone the P1 line. VIP banks skip the L1 queue. You will get a named owner and a next update time within 15 minutes (10 minutes for VIP).</p></details>
+    </article>
+    <article class="panel">
+      <h2>In-app guidance (planned surfaces)</h2>
+      <table>
+        <thead><tr><th>Page</th><th>Widget</th><th>Deflects</th></tr></thead>
+        <tbody>
+          <tr><td>Login / lockout</td><td>Reset steps</td><td>Access tickets</td></tr>
+          <tr><td>Pipeline loan</td><td>Status explainer</td><td>Status chats</td></tr>
+          <tr><td>Document upload</td><td>Checklist by product</td><td>Docs emails</td></tr>
+          <tr><td>SBA program picker</td><td>7(a) vs 504</td><td>Wrong-program tickets</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+  <script src="assets/nav.js"></script>
+</body>
+</html>
