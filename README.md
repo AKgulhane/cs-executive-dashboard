@@ -1,23 +1,41 @@
-# Customer Success Executive Dashboard
+# Customer Support function
 
-**Live dashboard (no install):** [https://akgulhane.github.io/](https://akgulhane.github.io/)
+Public operating system for Customer Support as we scale from dozens of **bank** customers to hundreds.
 
-Share that link. Anyone can open it in a browser. Nothing to download or install.
+**Live site (no install):** [https://akgulhane.github.io/](https://akgulhane.github.io/)
 
-Source repo: this project. Hosted site: [AKgulhane.github.io](https://github.com/AKgulhane/AKgulhane.github.io).
+Anyone with the link can open the dashboard, team plan, SLAs, escalation paths, knowledge base, operations, and data schema.
 
-## What’s on the board
+## What’s in this repo
 
-| Metric | What it shows |
+| Path | What it is |
 | --- | --- |
-| **SLA** | Share of cases that met contracted first-response and resolution targets |
-| **Cases handled** | Volume this period, plus open / in progress / resolved |
-| **MTTR** | Mean time to resolution, in hours, against a 6-hour target |
-| **Escalations** | Open executive / specialist cases with owner and age |
-| **Maintenance window** | Next planned change window and upcoming / completed work |
+| [docs/PRD.md](docs/PRD.md) | Product requirements |
+| [docs/BRD.md](docs/BRD.md) | Business requirements — team, SLAs, escalation, tooling |
+| [docs/data-schema.md](docs/data-schema.md) | Table and column dictionary |
+| [db/schema.sql](db/schema.sql) | Database schema |
+| [db/seed.sql](db/seed.sql) | Starter data aligned to the board |
+| `*.html` | Static site for GitHub Pages |
 
-Numbers on the page are **sample data** so the board is usable immediately.
+## Board metrics
 
-## Edit the numbers
+SLA · cases handled · MTTR · escalations · maintenance · **CSAT** · **first response time** · **ticket deflection**
 
-Change the `DATA` object in `index.html`, then update the same file in [AKgulhane.github.io](https://github.com/AKgulhane/AKgulhane.github.io) so the live site refreshes.
+## Create the database
+
+```bash
+sqlite3 db/support.db < db/schema.sql
+sqlite3 db/support.db < db/seed.sql
+```
+
+## Site map
+
+- [Dashboard](https://akgulhane.github.io/)
+- [Team](https://akgulhane.github.io/team.html)
+- [SLAs & metrics](https://akgulhane.github.io/slas.html)
+- [Escalations](https://akgulhane.github.io/escalations.html)
+- [Knowledge base](https://akgulhane.github.io/knowledge.html)
+- [Operations](https://akgulhane.github.io/operations.html)
+- [Data schema](https://akgulhane.github.io/schema.html)
+
+Numbers are **sample data**, labeled as such on the board.
